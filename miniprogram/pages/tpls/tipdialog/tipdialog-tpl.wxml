@@ -1,0 +1,10 @@
+<template name="tipdialog">
+<view class='Popup' hidden='{{tipdialog.iShidden}}' >
+  <view class='title'>用户隐私协议</view>
+ <!--  <image class="close" src="../../images/close.png"></image> -->
+  <scroll-view class='content' scroll-y='true'>
+    <rich-text nodes="{{tipdialog.content}}"></rich-text>
+  </scroll-view>
+</view>
+<view class='mask' hidden='{{tipdialog.iShidden}}' catchtouchmove="true" bindtap='bindtapClose'></view>
+</template> 

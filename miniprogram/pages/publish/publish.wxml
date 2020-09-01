@@ -1,0 +1,24 @@
+<!--logs.wxml-->
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="gallery">
+      <view class="item" wx:for="{{imageList}}" wx:key="">
+        <image src="{{item}}" data-src="{{item}}" bindtap="bindtapDelete" mode="aspectFill" />
+      </view>
+      <block wx:if="{{imageList.length <= 8}}">
+      <view class="item" bindtap="chooseImage">
+        <view class='addIcon'>+</view>
+      </view>
+      </block>
+    </view>
+    <view class="row5">
+      <input type="text" name='title' placeholder='请输入相册名'/>
+    </view>
+    <view style="width:750rpx;height:200rpx;"></view>
+    <view class="forward">
+      <button formType="submit">发布</button>
+    </view>
+  </form>
+
+
+</view>

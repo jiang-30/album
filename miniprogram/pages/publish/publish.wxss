@@ -1,0 +1,76 @@
+/*画廊*/
+.gallery {    
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  display: flex;    
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #fff;
+}
+/*每张图片所占容器*/
+.item {    
+  position: relative;    
+  margin:10rpx 5rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+.item image{
+  width: 100%;
+  height: 100%;
+}
+/*add按钮*/
+.item .addIcon{
+  position:relative;
+  width:200rpx;
+  height:200rpx;
+  text-align:center;
+  line-height:200rpx;
+  font-size:80rpx;
+  background: #f2f2f2;
+  color: #555;
+}
+.row5{
+  width: 750rpx;
+  height: 266rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.row5 input{
+  width: 100%;
+  height: 70rpx;
+  margin-bottom: 12rpx;
+  border-radius: 14rpx;
+  background-color: #eee;
+  padding-left: 19rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.forward{
+  width: 750rpx;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background:rgba(0,0,0,0);
+  z-index: 100;
+  font-weight: 700;
+}
+.forward button {
+  width: 600rpx;
+  height: 88rpx;
+  margin: 28rpx 0 44rpx 0;
+  color: #fff;
+  background-color: #3981fa;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  letter-spacing:10rpx;
+}

@@ -1,0 +1,34 @@
+<!--logs.wxml-->
+<view class="container">
+  <view class="top">
+    <view class="title">
+      <view bindtap="bindtapType" class="{{currentTypeIndex==0?'selected':''}}" data-type='0'>
+        <image class="huomiao" src="../../images/huomiao.png"></image><text>人气</text><image class="dot" src="../../images/dot.png"></image>
+      </view>
+      <view bindtap="bindtapType" class="{{currentTypeIndex==1?'selected':''}}" data-type='1'>推荐</view>
+      <view bindtap="bindtapType" class="{{currentTypeIndex==2?'selected':''}}" data-type='2'>最新</view>
+    </view>
+  </view>
+  <view class="lst">
+    <block wx:for="{{lst.data}}">
+    <view class="row" >
+      <view class='left'>
+      <image wx:if="{{ index==0 }}" src='../../images/ranking@guan.png'></image>
+      <image wx:elif="{{ index==1 }}" src='../../images/ranking@ya.png'></image>
+      <image wx:elif="{{ index==2 }}" src='../../images/ranking@ji.png'></image>
+      <block wx:else></block>
+      </view>
+      <view class="middle">
+          <image src='../../images/logo.png'></image>
+          <text>{{ item.title }}</text>
+        </view>
+      <view class='right' bindtap="bindtapDetail"  data-index="{{index}}"  data-id="{{item.id}}">
+        <view>点击查看</view>
+        <view>已有{{ item.watchnum }}人查看</view>
+      </view>
+    </view>
+    </block>
+  </view>
+
+
+</view>
