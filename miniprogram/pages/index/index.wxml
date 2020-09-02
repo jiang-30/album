@@ -1,7 +1,7 @@
 <import src="../tpls/tipdialog/tipdialog-tpl.wxml" />
 <view class="container">
     <swiper class="swiper" autoplay="true" circular="true" interval="0" duration="5000" vertical="true">
-        <block wx:for="{{bannerList}}">
+        <block wx:for="{{bannerList}}" wx:key="index">
             <swiper-item class="banner-item" catchtouchmove='catchTouchMove'>
                 <image src="{{item.thumb}}" mode="scaleToFill"></image>
             </swiper-item>
