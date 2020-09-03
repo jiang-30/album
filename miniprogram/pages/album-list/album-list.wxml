@@ -4,11 +4,12 @@
   </block>
   
   <view class="albums-box">
-      <block wx:for="{{albumArr}}">
+      <block wx:for="{{list}}">
           <view class="albums-item" bindtap="bindtapAlbumItemTap" data-index="{{index}}">
+          fd
               <image class="albums-image" src="{{item.thumbstmp[0]}}" mode="aspectFit"></image>
           </view>
       </block>
   </view>
 </view>
-
+<button class="cu-btn bg-blue">按钮</button>
