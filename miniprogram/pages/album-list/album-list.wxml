@@ -14,3 +14,10 @@
   </view>
 </view>
 <button class="cu-btn bg-blue" bind:tap="onCreate">按钮</button>
+<button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+<button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      size="default"
+    ></button>

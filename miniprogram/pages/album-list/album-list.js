@@ -5,6 +5,15 @@ Page({
     list: []
   },
   onLoad: function (options) {
+    console.log('options', options)
+    wx.cloud.init({
+      env: 'dev-53xgn',
+      traceUser: true
+     })
+    wx.login({
+    })
+    wx.getUserInfo({
+    })
     getAlbumListPage({
       page: 1,
       size: 10,
@@ -24,6 +33,9 @@ Page({
     //     albumArr: data.data
     //   })
     // })
+  },
+  onGetUserInfo(e){
+    console.log(e)
   },
   onDetail(e){
     let id = e.currentTarget.dataset.id

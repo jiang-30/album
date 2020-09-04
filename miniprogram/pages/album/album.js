@@ -1,13 +1,23 @@
 import { createAlbum, updateAlbum, getAlbumDetail } from '../../api/album/album'
+let defaultTitle = '新建相册'
 
 Page({
   data: {
-
+    id: '',
+    info: {
+      title: '',
+      list: [],
+    },
+    mode: 'normal', // normal operation
   },
   onLoad: function (options) {
     if(options.id){
       this.data.id = options.id
       this.fetchData()
+    } else {
+      wx.setNavigationBarTitle({
+        title: defaultTitle,
+      })
     }
   },
   fetchData(){
@@ -19,12 +29,15 @@ Page({
         console.log(err)
       })
   },
+  onInfoChange(e){
+
+  },
   onUpload(){
     wx.showActionSheet({
       itemList: ['拍照', '相册', '俩天记录'],
     })
       .then(res => {
-        console.log(res.tapIndex)
+        // console.log(res.tapIndex)
         if(res.tapIndex == 0){
           return  wx.chooseImage({
             sourceType: ['camera']
@@ -40,9 +53,8 @@ Page({
         }
       })
       .then(res => {
-        console.log(res)
-        let list = res.tempFilePaths
-        return updateAlbum({list})
+        // console.log(res)
+        return updateAlbum({list: res.tempFilePaths})
       })
       .then(res => {
         console.log(res)
@@ -58,5 +70,14 @@ Page({
     //     console.log(res)
     //   })
   },
-
+  onPhotoClick(e){
+    console.log(e)
+  },
+  onModeChange(){
+    let mode = this.data.mode
+    mode = mode == 'normal' ? 'operation' : 'normal'
+    this.setData({
+      mode
+    })
+  }
 })

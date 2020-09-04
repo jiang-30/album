@@ -38,12 +38,12 @@ export function updateAlbum(params){
   if(params.list){
     return uploadAlbumImage(params.list)
       .then(res => {
+        console.log('dd', res)
         return callFuncion('/put/album', {
           list: res
         })
       })
   }
-  return 
 }
 
 /**

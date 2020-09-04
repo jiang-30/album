@@ -1,12 +1,47 @@
 <view>相册名称</view>
-
+<input type="text" placeholder="相册名称" />
 <view>图片</view>
-<image src="cloud://dev-53xgn.6465-dev-53xgn-1303032646/image/333.png"></image>
+<view class="row">
+  <view class="col-3" wx:for="{{4}}" wx:key="*this">
+    <view class="img-item">
+      <view class="box" bind:tap="onPhotoClick">
+        <image class="img" src="cloud://dev-53xgn.6465-dev-53xgn-1303032646/images/26afbdfb-b2b3-44ba-b080-de6ba795678b.png" mode="aspectFill"></image>
+        <view class="checkbox" wx:if="{{ mode == 'operation' }}"></view>
+      </view>
+    </view>
+  </view>
+</view>
 
-<view>
-<text>喜欢</text>
-<text>评论</text>
-<text>看</text>
-<button>操作按钮</button>
-  <button class="cu-btn bg-primary" bind:tap="onUpload">上传</button>
+<view class="fixed-bar">
+  <view class="box" wx:if="{{ mode == 'normal' }}">
+    <view class="item">
+      <text>喜欢</text>
+    </view>
+    <view>
+      <text>评论</text>
+    </view>
+    <view>
+      <text>看</text>
+    </view>
+    <view class="item-setting">
+      <button class="" bind:tap="onModeChange">vbb</button>
+      <!-- <view class="operation-box">
+        <view class=""></view>
+        <button>df</button>
+        <button>df</button>
+        <button>df</button>
+      </view> -->
+    </view>
+    
+    <button class="cu-btn bg-primary" bind:tap="onUpload">上传</button>
+  </view>
+  <view class="box" wx:if="{{ mode == 'operation' }}">
+    <view class="item">
+      <text>全选</text>
+    </view>
+    <button class="" bind:tap="onModeChange">取消</button>
+    <button class="cu-btn bg-primary" bind:tap="onDownload">下载</button>
+    <button class="cu-btn bg-primary" bind:tap="onDelete">删除</button>
+  </view>
+
 </view>

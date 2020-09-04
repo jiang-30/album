@@ -1,36 +1,46 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-cloud.init({
-  env: cloud.DYNAMIC_CURRENT_ENV
-})
-
-const { getAlbumListPage, getAlbum, postAlbum, putAlbum, deleteAlbum } = require('./album')
+const { env } = require('./const')
+cloud.init({ env })
+const { getAlbumListPage, getAlbum, putAlbum, deleteAlbum } = require('./methods/album')
+const { upload } = require('./methods/upload')
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
   try {
-    switch(event.path){
+    const wxContext = cloud.getWXContext()
+    console.log(wxContext)
+    const user = {
+      openid: wxContext.OPENID
+    }
+    let resData
+    switch (event.path) {
       case '/get/album/page':
-        return getAlbumListPage(event.params, context)
+        resData = await getAlbumListPage(event.params, user, context)
+        break
       case '/get/album':
-        return getAlbum(event.params, context)
-      case '/post/album':
-        return postAlbum(event.params, context)
+        resData = await getAlbum(event.params, user, context)
+        break
       case '/put/album':
-        return putAlbum(event.params, context)
+        resData = await putAlbum(event.params, user, context)
+        break
       case '/delete/album':
-        return deleteAlbum(event.params, context)
+        resData = await deleteAlbum(event.params, user, context)
+        break
+      case '/upload':
+        resData = await upload(event.params, user, context)
+        break
       default:
-        return {
-          status: { code: 404, msg: '错误的请求路径' + event.params}
+        resData = {
+          status: { code: 404, msg: '错误的请求路径' + event.params }
         }
     }
+
+    return resData
   } catch (error) {
     console.warn('error', error)
     return {
-      status: { code: 500, msg: error}
+      status: { code: 500, msg: error }
     }
   }
-
 }

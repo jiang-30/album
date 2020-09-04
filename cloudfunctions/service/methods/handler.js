@@ -1,8 +1,11 @@
 const cloud = require('wx-server-sdk')
+const { env } = require('../const')
+cloud.init({ env })
 const db = cloud.database()
 
+
 exports.Album = db.collection('album')
-exports.handlerReturn = function(code, data, page){
+exports.handlerResponse = function(code, data, page){
   let status = {
     '200': '请求成功',
     '404': '未找到当前路径',

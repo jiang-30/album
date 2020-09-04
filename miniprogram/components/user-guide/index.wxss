@@ -1,0 +1,159 @@
+/* @import "../tpls/tipdialog/tipdialog-tpl.wxss"; */
+.swiper{
+  z-index: -1;
+  position: absolute;
+  height:2130rpx;width:750rpx;
+  background: black;
+}
+.swiper-box{
+  overflow-x: hidden;
+}
+.banner-item{
+  height:2150rpx;width:750rpx;
+}
+.banner-item image{
+  height:2130rpx;width:750rpx;margin-top: 20rpx;
+}
+/* 自定义导航栏开始 */
+.custom{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 45px;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.nav_logo{
+  float: left;
+  margin-left: 30rpx;
+  margin-top: 16rpx;
+  overflow:hidden;  
+  width: 60rpx;
+  height: 60rpx;
+  background:  rgba(42, 192, 206, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 50%;  
+}
+.nav_logo .avatarimg{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius:40%; 
+}
+
+.navview{
+  float: left;
+  margin-top: 16rpx;
+  width: 100%;
+  height: 60rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.navview .title{
+  width: 300rpx;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 24rpx;
+}
+.navview .title view{
+  flex: 1;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+}
+.navview .title .selected{
+  flex: 1;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #000;
+  background-color: #fff;
+  border-radius: 40rpx;
+}
+
+.custom text{
+  display: inline-block;
+  font-size: 34rpx;
+  font-weight: 500;
+  max-width: 280rpx;
+}
+.empty_custom{
+  height: 45px;
+  width: 100%;
+}
+/* 自定义导航栏结束 */
+.slogan{
+  width: 100%;
+  height: 280rpx;
+  margin-top: 50rpx;
+  text-align: center;
+  font-size: 48rpx;
+  color: #fff;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+.surface{
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  background:rgba(0,0,0,.6);
+  overflow:hidden;
+  z-index:10;
+}
+
+.duihua{
+  width: 100%;
+  height: auto;
+  padding-left: 40rpx;
+  box-sizing: border-box;
+}  
+.duihua image{
+  width: 624rpx;
+  height: 428rpx;
+}
+.create{
+  width: 100%;
+  height: 90rpx;
+  margin-top: 50rpx;
+}
+.create button{
+  width: 420rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border: 0;
+  color: #000;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 45rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.create button::after {
+  border: 0;
+}
+.agreement{
+  width: 100%;
+  height: 90rpx;
+  margin-top: 50rpx;
+  color: #999;
+  text-align: center;
+  font-size: 28rpx;
+}
+.agreement text{
+  color: #fff;
+  text-decoration:underline; /* 下划线 */
+}
+.support{width:219rpx;height:74rpx;margin:0 auto;display:block;}

@@ -25,6 +25,9 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
+  "useExtendedLib": {
+    "weui": true
+  },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

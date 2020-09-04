@@ -1,4 +1,4 @@
-import { upload } from '../action'
+import { upload, callFuncion } from '../action'
 
 export function uploadAlbumImage(paths){
   let length = paths.length
@@ -16,21 +16,38 @@ export function uploadAlbumImage(paths){
     //   }
     // }, 10000)
     list.forEach( item => {
-      let cloudPath = 'image/'
+      // let cloudPath = 'image/'
       wx.getImageInfo({
         src: item.path,
       })
         .then(res => {
-          console.log(res)
           item.height = res.height
           item.width = res.width
           item.orientation = res.orientation
           item.type = res.type
-          cloudPath = cloudPath + Date.now() + '-' + Math.random() + res.type
-          return upload(item.path, cloudPath)
+          return  new Promise((resolve, reject) => {
+            wx.getFileSystemManager().readFile({
+              filePath: item.path,
+              encoding: "base64",
+              success(res){
+                resolve(res)
+              },
+              fail(error){
+                reject(error)
+              }
+            })
+          })
+        }).then(res => {
+          // console.log('data', res)
+          return callFuncion('/upload', {
+            file: res.data,
+            type: item.type
+          })
         })
         .then(res => {
-          item.fileId = res.fileID 
+          // console.log(res)
+          item.fileId = res.data.fileId
+          item.md5 = res.data.md5
         })
         .catch(error => {
           console.log(error)
