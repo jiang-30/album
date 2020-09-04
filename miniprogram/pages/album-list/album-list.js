@@ -1,6 +1,4 @@
-import { Album } from '../../utils/model/album-model.js';
 import { getAlbumListPage } from '../../api/album/album'
-var album = new Album();
 
 Page({
   data: {
@@ -8,8 +6,8 @@ Page({
   },
   onLoad: function (options) {
     getAlbumListPage({
-      size: 10,
       page: 1,
+      size: 10,
     }).then(res => {
       console.log('res', res)
       this.setData({
@@ -18,7 +16,6 @@ Page({
     }).catch(error => {
       console.warn('error', error)
     })
-    let that = this;
     // album.getAlbumInfoByUser((data)=>{
     //   console.log("getAlbumInfoByUser");
     //   console.log(data);
@@ -27,6 +24,19 @@ Page({
     //     albumArr: data.data
     //   })
     // })
+  },
+  onDetail(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      // url: '/pages/create/create',
+      url: '/pages/album/album?id=' + id,
+    })
+  },
+  onCreate(){
+    wx.navigateTo({
+      // url: '/pages/create/create',
+      url: '/pages/album/album',
+    })
   },
   bindtapAlbumItemTap: function (e) {
     let index = e.currentTarget.dataset.index;

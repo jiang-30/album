@@ -1,4 +1,5 @@
 import { callFuncion, Album } from '../action'
+import { uploadAlbumImage } from '../upload/upload'
 
 /**
  * 分页查询相册列表
@@ -15,13 +16,18 @@ export function getAlbumListPage(params){
  * @param {*} id 
  */
 export function getAlbumDetail(id){
-  return callFuncion('/get/album', {id})
+  return callFuncion('/get/album', id)
 }
 
 /**
  * 创建相册
  */
 export function createAlbum(params){
+  console.log(params)
+
+
+
+  return
   return callFuncion('/post/album', params)
 }
 
@@ -29,7 +35,15 @@ export function createAlbum(params){
  * 更新相册
  */
 export function updateAlbum(params){
-  return callFuncion('/put/album', params)
+  if(params.list){
+    return uploadAlbumImage(params.list)
+      .then(res => {
+        return callFuncion('/put/album', {
+          list: res
+        })
+      })
+  }
+  return 
 }
 
 /**

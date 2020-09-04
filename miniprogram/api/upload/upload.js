@@ -16,16 +16,29 @@ export function uploadAlbumImage(paths){
     //   }
     // }, 10000)
     list.forEach( item => {
-      let cloudPath = ''
-      upload(item.path, cloudPath)
+      let cloudPath = 'image/'
+      wx.getImageInfo({
+        src: item.path,
+      })
+        .then(res => {
+          console.log(res)
+          item.height = res.height
+          item.width = res.width
+          item.orientation = res.orientation
+          item.type = res.type
+          cloudPath = cloudPath + Date.now() + '-' + Math.random() + res.type
+          return upload(item.path, cloudPath)
+        })
         .then(res => {
           item.fileId = res.fileID 
         })
-        .catch(error => {})
+        .catch(error => {
+          console.log(error)
+        })
         .finally(() => {
           index++
           if(index == length){
-            resolve(list.map(item => item.fileID))
+            resolve(list)
             // clearTimeout(timer)
           }
         })

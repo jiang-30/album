@@ -5,11 +5,12 @@
   
   <view class="albums-box">
       <block wx:for="{{list}}">
-          <view class="albums-item" bindtap="bindtapAlbumItemTap" data-index="{{index}}">
-          fd
-              <image class="albums-image" src="{{item.thumbstmp[0]}}" mode="aspectFit"></image>
+          <view class="albums-item" bindtap="onDetail" data-id="{{ item._id }}" data-index="{{index}}">
+              <image class="albums-image" src="{{item.list[0].fileId}}" mode="aspectFit"></image>
+              <text>{{ item.title }}</text>
+              <text>{{ item.list.length}}张</text>
           </view>
       </block>
   </view>
 </view>
-<button class="cu-btn bg-blue">按钮</button>
+<button class="cu-btn bg-blue" bind:tap="onCreate">按钮</button>

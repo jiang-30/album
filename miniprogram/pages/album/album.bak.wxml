@@ -1,0 +1,69 @@
+<view class="container">
+  <view class="banner-swiper">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" current='{{swiperCurrent}}' 
+      indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" circular='{{circular}}' 
+      previous-margin="{{previousmargin}}" next-margin="{{nextmargin}}" bindchange="swiperChange" >
+      <block wx:for="{{one.thumbstmp}}" wx:key="key"> 
+        <swiper-item>
+          <image src="{{item}}" class="slide-image{{index == swiperCurrent ? ' active' : ''}}" 
+            bindchange="chuangEvent" id="{{index}}"></image>
+        </swiper-item>
+      </block> 
+    </swiper>
+  </view> 
+  <view class="middle">
+    <view class="left">{{one.title}}</view>
+    <view class="right">
+      <view class="guan marginright30">
+        <image class="guanimage" src="../../images/detail@guankan.png"></image>
+        <view>
+          <view><text>{{one.watchnum}}</text></view>
+          <view><text>观看</text></view>
+        </view>
+      </view>
+      <view class="guan marginright30" bindtap='bindchangeActionSheet'>
+        <image class="guanimage" src="../../images/detail@share.png"></image>
+        <view>
+          <view><text>{{one.sharenum}}</text></view>
+          <view><text>分享</text></view>
+        </view>
+      </view>
+      <view class="guan">
+        <image class="guanimage" src="../../images/detail@down.png"></image>
+        <view>
+          <view><text>{{one.downnum}}</text></view>
+          <view><text>下载</text></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <button class="fenxiang" bindtap='bindchangeActionSheet'>生成相册专属海报</button>
+  <!--
+  <view>
+  订阅作者
+  </view> -->
+  <!-- 分享按钮 -->
+  <action-sheet hidden="{{actionSheetHidden}}" bindchange="bindchangeActionSheet" class='pro-wrapper' hover-class='none'>
+    <action-sheet-item hover-class='none'>
+      <button open-type="share" class='contact' hover-class='none'>
+        <view class='iconn'></view>
+        发送给朋友
+      </button>
+      <button class='contact' bindtap='bindtapCreatePoster' hover-class='none'>
+        <view class='iconn iconn1'></view>
+        生成海报
+      </button>
+    </action-sheet-item>
+  </action-sheet>
+
+  <!-- 海报展示 -->
+  <view class='poster-pop' wx:if="{{posterImageStatus}}">
+    <image src='/images/poster-close.png' class='close' bindtap='posterImageClose'></image>
+    <image src='{{posterImage}}'></image>
+    <view class='save-poster' bindtap='bindtapSavePosterPath'>保存到手机</view>
+  </view>
+  <view class='mask' wx:if="{{posterImageStatus}}"></view>
+  <canvas class="canvas" canvas-id='myCanvas' wx:if="{{canvasStatus}}"></canvas>
+</view>
+

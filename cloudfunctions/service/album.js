@@ -26,16 +26,37 @@ exports.getAlbumListPage = async function(params = {}, context){
     return handlerReturn(500, error)
   }
 }
-exports.getAlbum = function(){
-  
+exports.getAlbum = async function(params){
+  const wxContext = cloud.getWXContext()
+  const filter = {
+    id: params,
+    _openid: wxContext.OPENID
+  }
+
+  let res = await Album.doc(params).get()
+  // let res = await Album.where(filter).get()
+  return handlerReturn(200, res.data)
 }
 
 exports.postAlbum = function(){
   
 }
 
-exports.putAlbum = function(){
-  
+exports.putAlbum = async function(params, context){
+  console.log('put', params)
+  const wxContext = cloud.getWXContext()
+  if(params.id){
+
+  } else {
+    let res = await Album.add({
+      data: {
+        _openid: wxContext.OPENID,
+        title: '我的相册',
+        list: params.list
+      }
+    })
+    handlerReturn(200, res)
+  }
 }
 
 exports.deleteAlbum = function(){
