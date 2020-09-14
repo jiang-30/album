@@ -1,16 +1,24 @@
-//index.js
+import { getAlbumListPage } from '../../api/album/album'
 const app = getApp()
-
 Page({
   data: {
+    statusBarHeight: app.globalData.statusBarHeight,
     avatarUrl: './user-unlogin.png',
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    page: {
+      size: 10,
+      current: 1,
+      total: 0,
+      list: []
+    },
+    list: []
   },
 
   onLoad: function() {
+    this.fetchData()
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -35,7 +43,43 @@ Page({
       }
     })
   },
-
+  onPullDownRefresh(){
+    console.log('refresh')
+  },
+  onReachBottom(){
+    console.log('bottom')
+  },
+  onNav(e){
+    const path = e.currentTarget.dataset.path
+    switch(path){
+      case 'user':
+        wx.navigateTo({
+          url: '/pages/user/user',
+        })
+        break
+      case 'albumDetail':
+        wx.navigateTo({
+          url: '/pages/album/album',
+        })
+        break
+      default:
+        console.warn('error path:' + path)
+    }
+    
+  },
+  fetchData(){
+    getAlbumListPage({
+      page: this.data.page.current,
+      size: this.data.page.size,
+    }).then(res => {
+      console.log('res', res)
+      this.setData({
+        'list': res.data
+      })
+    }).catch(error => {
+      console.warn('error', error)
+    })
+  },
   onGetUserInfo: function(e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
