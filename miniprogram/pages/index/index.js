@@ -1,5 +1,6 @@
 import { getAlbumListPage } from '../../api/album/album'
 const app = getApp()
+
 Page({
   data: {
     statusBarHeight: app.globalData.statusBarHeight,
@@ -16,15 +17,8 @@ Page({
     },
     list: []
   },
-
   onLoad: function() {
     this.fetchData()
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
 
     // 获取用户信息
     wx.getSetting({
@@ -60,6 +54,11 @@ Page({
       case 'albumDetail':
         wx.navigateTo({
           url: '/pages/album/album',
+        })
+        break
+      case 'create':
+        wx.navigateTo({
+          url: '/pages/album-create/album-create',
         })
         break
       default:

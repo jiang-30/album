@@ -1,0 +1,29 @@
+.nav-section{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  background-color: #f00;
+}
+.nav-section .nav-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+.nav-section .nav-aside {
+  width: 100rpx;
+  padding: 0 10px;
+}
+.nav-section .nav-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav-section .nav-title {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-import { Album } from '../../utils/model/album-model.js';
+import { Album } from '../../../utils/model/album-model.js';
 var album = new Album();
 
 Page({

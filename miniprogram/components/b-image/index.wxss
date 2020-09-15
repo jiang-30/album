@@ -1,1 +1,10 @@
-/* components/b-image/index.wxss */
+.img-wrapper {
+  position: relative;
+}
+.img-wrapper .img-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

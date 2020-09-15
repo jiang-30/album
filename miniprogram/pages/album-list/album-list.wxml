@@ -1,23 +1,15 @@
-<view class="container">
-  <block wx:if="{{albumArr.length > 0}}">
-  
-  </block>
-  
-  <view class="albums-box">
-      <block wx:for="{{list}}">
-          <view class="albums-item" bindtap="onDetail" data-id="{{ item._id }}" data-index="{{index}}">
-              <image class="albums-image" src="{{item.list[0].fileId}}" mode="aspectFit"></image>
-              <text>{{ item.title }}</text>
-              <text>{{ item.list.length}}张</text>
-          </view>
-      </block>
+<view class="row">
+  <view class="col-6" wx:for="{{list}}" wx:key="_id">
+    <view bindtap="onDetail" data-id="{{ item._id }}" data-index="{{index}}">
+      <b-image src="{{item.list[0].fileId}}" ratio="120"></b-image>
+      <view>
+        <text>{{ item.title }}</text>
+        <text>{{ item.list.length}}张</text>
+      </view>
+    </view>
   </view>
 </view>
-<button class="cu-btn bg-blue" bind:tap="onCreate">按钮</button>
-<button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
-<button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      size="default"
-    ></button>
+
+<view class="">
+  <button class="cu-btn bg-blue" bind:tap="onCreate">新建</button>
+</view>

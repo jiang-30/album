@@ -1,2 +1,8 @@
-<!--components/b-image/index.wxml-->
-<text>components/b-image/index.wxml</text>
+<view
+  class="img-wrapper"
+  style="width: {{ width }}; height: {{ ratio ? 0:  height }}; padding-bottom: {{ ratio }}%;"
+>
+  <view class="img-box" style="overflow: hidden; border-radius: {{ radius }};">
+  <image src="{{ src }}" style="width: 100%; height: 100%;" mode="{{ mode }}"></image>
+  </view>
+</view>

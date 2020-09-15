@@ -1,18 +1,21 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/chooseLib/chooseLib",
-    "pages/splash/splash",
     "pages/user/user",
     "pages/album-list/album-list",
-    "pages/album/album"
+    "pages/album/album",
+    "pages/chooseLib/chooseLib"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "私密相册",
     "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "b-image": "./components/b-image/index",
+    "b-status": "./components/b-status/index"
   },
   "useExtendedLib": {
     "weui": true

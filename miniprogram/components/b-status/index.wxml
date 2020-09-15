@@ -1,0 +1,21 @@
+<!-- slot default 操作, image image, desc desc, loading -->
+<view class="b-status">
+  <slot
+    wx:if="{{ config.status != 'placeholder' && config.status != 'error' && config.status != 'empty' }}"
+  />
+  <block wx:if="{{ config.status != 'ok' }}">
+    <slot name="placeholder" wx:if="{{ slotPlaceholder && config.status == 'placeholder' }}" />
+    <view class="b-status--{{ config.type }}" wx:else>
+      <slot name="image" wx:if="{{ slotImage }}"></slot>
+      <image
+        class="b-status__image"
+        src="{{ config.image }}"
+        wx:elif="{{config.image }}"
+        mode="aspectFit"
+      />
+      <slot name="title" wx:if="{{ slotTitle }}"></slot>
+      <view class="b-status__title" wx:elif="{{ config.title }}">{{ config.title }}</view>
+      <view class="b-status__desc" wx:if="{{ config.desc }}">{{ config.desc }}</view>
+    </view>
+  </block>
+</view>

@@ -1,4 +1,4 @@
-@import "../tpls/tipdialog/tipdialog-tpl.wxss";
+/* @import "../tpls/tipdialog/tipdialog-tpl.wxss"; */
 .swiper{
   z-index: -1;
   position: absolute;

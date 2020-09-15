@@ -1,0 +1,12 @@
+<view class="nav-section">
+  <view class="status-bar" style="height: {{ statusBarHeight }}px;"></view>
+  <view class="nav-bar">
+    <view class="nav-left nav-aside">
+      <view class="avatar" data-path="user" bind:tap="onNav">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+    </view>
+    <view class="nav-title">title</view>
+    <view class="nav-aside"></view>
+  </view>
+</view>

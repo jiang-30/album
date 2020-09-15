@@ -12,17 +12,24 @@
   </view>
 </view>
 <!-- 相册列表 -->
+<!-- <b-status status="no">
+</b-status> -->
 <view>
-  <view class="main-section">
-    <view class="col" wx:for="{{ list }}" wx:key="_id">
+  <view class="row">
+    <view class="col-6 mb-10" wx:for="{{ list }}" wx:key="_id">
       <view class="item" data-id="{{ item._id }}" data-path="albumDetail" bind:tap="onNav">
         <view class="cover">
-          <image src="{{ item.list[0].path }}"></image>
+          <b-image src="{{ item.list[0].fileId }}" ratio="120"></b-image>
         </view>
-        <view class="info">
+        <view class="info text-ellipsis">
           {{ item.title}}
         </view>
       </view>
     </view>
   </view>
 </view>
+
+<view class="add-section" data-path="create" bind:tap="onNav">
+ add
+</view>
+

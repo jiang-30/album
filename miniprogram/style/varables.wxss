@@ -1,0 +1,25 @@
+page {
+  --color-primary: #ff3a6d;
+  --color-secondary: #fa6400;
+  --color-price: #f40;
+  --color-active: #ff3a6d;
+  --color-info: #fa6400;
+  --color-success: #fa6400;
+  --color-warning: #ff3b30;
+  --color-danger: #ff3b30;
+  --color-border: #eee;
+  --color-bg: #f6f6f6;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-grey1: #f2f6fc;
+  --color-grey2: #ebeef5;
+  --color-grey3: #e4e7ed;
+  --color-grey4: #dcdfe6;
+  --color-grey5: #c0c4cc;
+  --color-grey6: #909399;
+  --color-grey7: #606266;
+  --color-grey8: #303133;
+
+  --page-spacing: 24rpx;
+  --row-gutter: 5px;
+}
