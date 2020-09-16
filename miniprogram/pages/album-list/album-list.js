@@ -2,18 +2,27 @@ import { getAlbumListPage } from '../../api/album/album'
 
 Page({
   data: {
+    type: 'normal',
+    page: {
+      current: 1,
+      size: 10,
+      total: 0,
+      more: true,
+      loading: false,
+      status: 'placeholder'
+    },
     list: []
   },
   onLoad: function (options) {
-    console.log('options', options)
-    wx.cloud.init({
-      env: 'dev-53xgn',
-      traceUser: true
-     })
-    wx.login({
-    })
-    wx.getUserInfo({
-    })
+    if(options.type == 'choose'){
+      wx.setNavigationBarTitle({
+        title: '选择相册',
+      })
+      this.setData({ type: 'choose' })
+    }
+    this.fetchData()
+  },
+  fetchData(){
     getAlbumListPage({
       page: 1,
       size: 10,
@@ -25,19 +34,8 @@ Page({
     }).catch(error => {
       console.warn('error', error)
     })
-    // album.getAlbumInfoByUser((data)=>{
-    //   console.log("getAlbumInfoByUser");
-    //   console.log(data);
-    //   wx.setStorageSync('albumlstuser', data)
-    //   that.setData({
-    //     albumArr: data.data
-    //   })
-    // })
   },
-  onGetUserInfo(e){
-    console.log(e)
-  },
-  onDetail(e){
+  onItemClick(e){
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       // url: '/pages/create/create',

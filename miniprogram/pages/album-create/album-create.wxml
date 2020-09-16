@@ -1,36 +1,24 @@
-<!--logs.wxml-->
-<view class="container">
-  <view class="top" ><image src="../../images/xiu.png"></image></view>
-  <view class="lst">
-    <view class="row" bindtap="bindtapXiangce">
-      <view class='left'>
-        <image src='../../images/zhaopian.png'></image>
-        <view class="middle">
-          <view class="title">从相册中选择</view>
-          <view class="subtitle">视频不超过1分钟，图片最多9张</view>
-        </view>
-      </view>
-      <view class='right'>
-        <image src='../../images/right.png'></image>
-      </view>
-      
-    </view>
-    <!--
-    <view class="row" bindtap="bindtapXiangji">
-      <view class='left'>
-        <image src='../../images/xiangji.png'></image>
-        <view class="middle">
-          <view class="title">拍摄</view>
-          <view class="subtitle">长按拍30秒视频，轻触拍照</view>
-        </view>
-      </view>
-      <view class='right'>
-        <image src='../../images/right.png'></image>
-      </view>
-      
-    </view>
-    -->
-  </view>
-
-
+<view class="album-cell" hover-class="album-cell__hover" bind:tap="onChooseAlbum">
+  <view>选择相册</view>
+  <view class="main">{{ album.title || '请选择相册'}}</view>
+  <view>></view>
 </view>
+<view>
+  <view class="row">
+    <view class="col-4" wx:for="{{ list }}" wx:key="*this">
+      <view class="img-item">
+        <b-image src="{{ item }}" ratio="100"></b-image>
+        <view class="close" data-index="{{ index }}" bind:tap="onDelete">X</view>
+      </view>
+    </view>
+    <view class="col-4">
+      <view class="img-item" bind:tap="onAdd">
+        +
+      </view>
+    </view>
+  </view>
+</view>
+
+<b-tab-bar>
+  <button class="btn-upload">上传</button>
+</b-tab-bar>

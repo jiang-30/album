@@ -1,15 +1,29 @@
-.albums-box{
-  margin: 20rpx;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content:space-between;
+.row {
+  padding: 0 8px;
+  box-sizing: border-box;
+  --row-gutter: 4px;
 }
-.albums-item{
-  width: 352rpx;
-  height:437rpx;
-  margin-bottom: 4rpx;
+.item {
+  margin-top: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
 }
-.albums-image{
-  width:350rpx;
-  height:437rpx;
+.item .info {
+  padding: 8px;
+  font-size: 16px;
+  color: #333;
+}
+.item .info .num {
+  font-size: 12px;
+  color: #888;
+}
+
+.btn-create{
+  display: block;
+  width: 660rpx !important;
+  border-radius: 500px;
+  color: #fff;
+  font-weight: 400;
+  background-color: #00f;
 }

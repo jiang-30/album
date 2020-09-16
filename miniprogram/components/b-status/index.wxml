@@ -1,21 +1,32 @@
 <!-- slot default 操作, image image, desc desc, loading -->
+<!-- placeholder -->
+<!-- empty -->
+<!-- error -->
+<!-- more -->
+<!-- more-no -->
+<!-- more-loading -->
+<!-- more-error -->
 <view class="b-status">
-  <slot
-    wx:if="{{ config.status != 'placeholder' && config.status != 'error' && config.status != 'empty' }}"
-  />
-  <block wx:if="{{ config.status != 'ok' }}">
-    <slot name="placeholder" wx:if="{{ slotPlaceholder && config.status == 'placeholder' }}" />
-    <view class="b-status--{{ config.type }}" wx:else>
-      <slot name="image" wx:if="{{ slotImage }}"></slot>
-      <image
-        class="b-status__image"
-        src="{{ config.image }}"
-        wx:elif="{{config.image }}"
-        mode="aspectFit"
-      />
-      <slot name="title" wx:if="{{ slotTitle }}"></slot>
-      <view class="b-status__title" wx:elif="{{ config.title }}">{{ config.title }}</view>
-      <view class="b-status__desc" wx:if="{{ config.desc }}">{{ config.desc }}</view>
-    </view>
-  </block>
+  <slot wx:if="{{ status == 'ok' || status == 'more' || status == 'more-loading' || status == 'more-no' || status == 'more-error'  }}"></slot>
+  <view wx:if="{{ status == 'placeholder' }}" class="b-status__placeholder">
+    placeholder
+  </view>
+  <view wx:elif="{{ status == 'empty' }}" class="b-status__emtpy">
+    empty
+  </view>
+  <view wx:elif="{{ status == 'error' }}" class="b-status__error">
+    error
+  </view>
+  <view wx:elif="{{ status == 'more' }}" class="b-status__more">
+    more
+  </view>
+  <view wx:elif="{{ status == 'more-loading' }}" class="b-status__more-loading">
+    more-loading
+  </view>
+  <view wx:elif="{{ status == 'more-no' }}" class="b-status__more-no">
+    more-no
+  </view>
+  <view wx:elif="{{ status == 'more-error' }}" class="b-status__more-error">
+    more-error
+  </view>
 </view>

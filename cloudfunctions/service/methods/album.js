@@ -6,29 +6,35 @@ const { Album, handlerResponse } = require('./handler')
 /**
  * 分页获取相册
  * @param {*} params 
- * @param {*} context
+ * @param {*} user
  */
 exports.getAlbumListPage = async function(params = {}, user){
   try {
-    params.current = params.current || 1
-    params.size = params.size || 10
-    const filter = { '_openid': user.openid }
-    console.log(user, cloud.getWXContext())
+    const current = params.current || 1
+    const size = params.size || 10
+    const filter = {} // '_openid': user.openid
     let data = []
     let total = 0
+    let more = false
 
     const countRes = await Album.where(filter).count()
     total = countRes.total
-   
+
+    // console.log(user, cloud.getWXContext())
+    
+    if(current * size < total){
+      more = true
+    }
+    
     if(total > 0){
       const res = await Album
       .where(filter)
-      .skip((params.current - 1) * params.size)
-      .limit(params.size)
+      .skip((current - 1) * size)
+      .limit(size)
       .get()
       data = res.data
     }
-    return handlerResponse(200, data, {size: params.size, current: params.current, total})
+    return handlerResponse(200, data, {size, current, total, more})
   } catch (error) {
     return handlerResponse(500, error)
   }

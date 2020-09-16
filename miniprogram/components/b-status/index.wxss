@@ -1,4 +1,4 @@
-.b-status .b-status__title {
+.b-status .b-status__placeholder {
   margin-top: 5px;
   margin-bottom: 5px;
   line-height: 20px;
@@ -7,37 +7,23 @@
   font-weight: 400;
   color: #777777;
 }
-.b-status .b-status__desc {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  line-height: 20px;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 400;
-  color: #999999;
+.b-status .b-status__empty {
+
+}
+.b-status .b-status__error {
+
+}
+.b-status .b-status__more {
+
+}
+.b-status .b-status__more-loading {
+
+}
+.b-status .b-status__more-no {
+
+}
+.b-status .b-status__error {
+
 }
 
-.b-status .b-status--page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px 20px;
-}
-.b-status .b-status--page .b-status__image {
-  width: 120px;
-  height: 120px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
-.b-status .b-status--more {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-}
-.b-status .b-status--more .b-status__image {
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
-}

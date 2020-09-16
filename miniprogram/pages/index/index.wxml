@@ -1,5 +1,5 @@
 <!-- 自定义导航栏 -->
-<view class="nav-section">
+<!-- <view class="nav-section">
   <view class="status-bar" style="height: {{ statusBarHeight }}px;"></view>
   <view class="nav-bar">
     <view class="nav-left nav-aside">
@@ -10,26 +10,33 @@
     <view class="nav-title">title</view>
     <view class="nav-aside"></view>
   </view>
+</view> -->
+<view class="fixed-avatar" style="top: {{ statusBarHeight }}px;">
+  <view class="avatar" data-path="user" bind:tap="onNav">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
 </view>
+
 <!-- 相册列表 -->
-<!-- <b-status status="no">
-</b-status> -->
-<view>
-  <view class="row">
-    <view class="col-6 mb-10" wx:for="{{ list }}" wx:key="_id">
-      <view class="item" data-id="{{ item._id }}" data-path="albumDetail" bind:tap="onNav">
-        <view class="cover">
-          <b-image src="{{ item.list[0].fileId }}" ratio="120"></b-image>
-        </view>
-        <view class="info text-ellipsis">
-          {{ item.title}}
+<b-status status="{{ page.status }}">
+  <view>
+    <view class="row">
+      <view class="col-6" wx:for="{{ list }}" wx:key="_id">
+        <view class="item" data-id="{{ item._id }}" data-path="albumDetail" bind:tap="onNav">
+          <view class="cover">
+            <b-image src="{{ item.list[0].fileId }}" ratio="120"></b-image>
+          </view>
+          <view class="info text-ellipsis">
+            {{ item.title}}
+          </view>
         </view>
       </view>
     </view>
   </view>
-</view>
+</b-status>
 
-<view class="add-section" data-path="create" bind:tap="onNav">
+
+<view class="add-section" bind:tap="onAdd">
  add
 </view>
 

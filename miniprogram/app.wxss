@@ -1,4 +1,7 @@
 /* @import "colorui/main.wxss";
 @import "colorui/icon.wxss"; */
 
-@import "./style/index.wxss"
+@import "./style/index.wxss";
+page {
+  background-color: #F6F6F6;
+}

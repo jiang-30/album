@@ -1,0 +1,8 @@
+<view class="tab-bar" style="height: {{ 50 + bottomStatusBarHeight }}px;">
+  <view class="tab-bar__fixed">
+    <view class="tab-bar__body" style="height: 50px;">
+      <slot></slot>
+    </view>
+    <view style="height:{{ bottomStatusBarHeight }}px;"></view>
+  </view>
+</view>

@@ -1,15 +1,15 @@
 <view class="row">
   <view class="col-6" wx:for="{{list}}" wx:key="_id">
-    <view bindtap="onDetail" data-id="{{ item._id }}" data-index="{{index}}">
+    <view class="item" bindtap="onItemClick" data-id="{{ item._id }}" data-index="{{index}}">
       <b-image src="{{item.list[0].fileId}}" ratio="120"></b-image>
-      <view>
-        <text>{{ item.title }}</text>
-        <text>{{ item.list.length}}张</text>
+      <view class="info">
+        <view>{{ item.title }}</view>
+        <view class="num">{{ item.list.length }}张</view>
       </view>
     </view>
   </view>
 </view>
 
-<view class="">
-  <button class="cu-btn bg-blue" bind:tap="onCreate">新建</button>
-</view>
+<b-tab-bar>
+  <button class="btn-create" bind:tap="onCreate">新建相册</button>
+</b-tab-bar>

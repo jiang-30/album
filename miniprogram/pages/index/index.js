@@ -1,47 +1,74 @@
 import { getAlbumListPage } from '../../api/album/album'
+import { chooseImage } from '../../utils/lib/choose-image'
 const app = getApp()
 
 Page({
   data: {
     statusBarHeight: app.globalData.statusBarHeight,
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    logged: false,
-    takeSession: false,
-    requestResult: '',
     page: {
+      status: 'placeholder',
       size: 10,
       current: 1,
       total: 0,
-      list: []
+      loading: false,
+      more: true
     },
     list: []
   },
   onLoad: function() {
     this.fetchData()
-
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              this.setData({
-                avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
-              })
-            }
-          })
-        }
-      }
-    })
   },
   onPullDownRefresh(){
-    console.log('refresh')
+    this.data.page.current = 1
+    this.data.page.more = true
+    this.fetchData()
   },
   onReachBottom(){
-    console.log('bottom')
+    this.fetchData()
+  },
+  fetchData(){
+    if(!this.data.page.more || this.data.page.loading) return
+    this.data.page.loading = true
+    if(this.data.page.current > 1){
+      this.setData({ 'page.status': 'more-loading'})
+    }
+    getAlbumListPage({
+      page: this.data.page.current,
+      size: this.data.page.size,
+    }).then(res => {
+      console.log('res', res)
+      let status = 'ok'
+      let current = res.page.current
+      let list = res.data
+      if(res.page.more){
+        current++
+        status = 'more'
+      } else if(res.page.total == 0) {
+        status = 'empty'
+      } else {
+        status = 'more-no'
+      }
+      if(current > 1){
+        list = this.data.list.concat(list)
+      }
+      this.setData({
+        'page.current': current,
+        'page.size': res.page.size,
+        'page.more': res.page.more,
+        'page.total': res.page.total,
+        'page.status': status,
+        'list': list
+      })
+    }).catch(error => {
+      console.warn('error', error)
+      let status = this.data.page.current == 1 ?  'error' : 'more-error'
+      this.setData({
+        'page.status': status
+      })
+    }).finally(() => {
+      wx.stopPullDownRefresh()
+      this.data.page.loading = false
+    })
   },
   onNav(e){
     const path = e.currentTarget.dataset.path
@@ -57,26 +84,21 @@ Page({
         })
         break
       case 'create':
-        wx.navigateTo({
-          url: '/pages/album-create/album-create',
-        })
+        
         break
       default:
         console.warn('error path:' + path)
     }
     
   },
-  fetchData(){
-    getAlbumListPage({
-      page: this.data.page.current,
-      size: this.data.page.size,
-    }).then(res => {
-      console.log('res', res)
-      this.setData({
-        'list': res.data
+  onAdd(){
+    chooseImage().then(res => {
+      wx.setStorageSync('newImages', res)
+      wx.navigateTo({
+        url: '/pages/album-create/album-create',
       })
-    }).catch(error => {
-      console.warn('error', error)
+    }).catch(err => {
+      console.log(err)
     })
   },
   onGetUserInfo: function(e) {

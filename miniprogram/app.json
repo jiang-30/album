@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/user/user",
+    "pages/album-create/album-create",
     "pages/album-list/album-list",
     "pages/album/album",
     "pages/chooseLib/chooseLib"
@@ -9,13 +10,14 @@
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "私密相册",
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
     "b-image": "./components/b-image/index",
-    "b-status": "./components/b-status/index"
+    "b-status": "./components/b-status/index",
+    "b-tab-bar": "./components/b-tab-bar/index"
   },
   "useExtendedLib": {
     "weui": true

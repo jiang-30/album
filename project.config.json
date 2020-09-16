@@ -86,6 +86,13 @@
           "id": -1,
           "name": "pages/album/album",
           "pathName": "pages/album/album",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/album-create/album-create",
+          "pathName": "pages/album-create/album-create",
           "scene": null
         }
       ]
