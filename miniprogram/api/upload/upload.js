@@ -1,5 +1,9 @@
 import { upload, callFuncion } from '../action'
 
+/**
+ * 
+ * @param { string[] } paths 
+ */
 export function uploadAlbumImage(paths){
   let length = paths.length
   let index = 0
@@ -10,13 +14,7 @@ export function uploadAlbumImage(paths){
     }
   })
   return new Promise((resolve, reject) => {
-    // let timer = setTimeout(() => {
-    //   if(index < length){
-    //     reject(list.map(item => item.fileId))
-    //   }
-    // }, 10000)
     list.forEach( item => {
-      // let cloudPath = 'image/'
       wx.getImageInfo({
         src: item.path,
       })
@@ -48,16 +46,15 @@ export function uploadAlbumImage(paths){
           // console.log(res)
           item.fileId = res.data.fileId
           item.md5 = res.data.md5
-        })
-        .catch(error => {
-          console.log(error)
-        })
-        .finally(() => {
+          delete item.path
           index++
           if(index == length){
             resolve(list)
-            // clearTimeout(timer)
           }
+        })
+        .catch(error => {
+          console.log(error)
+          reject(error)
         })
     })
   })

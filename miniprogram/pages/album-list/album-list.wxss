@@ -1,7 +1,7 @@
 .row {
   padding: 0 8px;
   box-sizing: border-box;
-  --row-gutter: 4px;
+  --row-gutter: 3px;
 }
 .item {
   margin-top: 10px;
@@ -9,7 +9,11 @@
   overflow: hidden;
   background-color: #fff;
 }
+
 .item .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 8px;
   font-size: 16px;
   color: #333;
@@ -18,7 +22,16 @@
   font-size: 12px;
   color: #888;
 }
-
+.item.item__choose {
+  display: flex;
+  margin-top: 5px;
+}
+.item.item__choose .cover {
+  width: 180rpx;
+}
+.item.item__choose .info {
+  flex: 1;
+}
 .btn-create{
   display: block;
   width: 660rpx !important;

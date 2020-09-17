@@ -1,0 +1,86 @@
+page {
+  box-sizing: border-box;
+}
+.title-section {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  margin: 5px 0;
+  padding: 0 10px;
+  background-color: #fff;
+}
+.title-section .label {
+  margin-right: 8px;
+  font-size: 14px;
+  color: var(--color-grey7)
+}
+.title-section .input {
+  flex: 1;
+}
+
+.row {
+  padding: 3px;
+  --row-gutter: 3px;
+}
+.img-item {
+  position: relative;
+  width: 100%;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.img-item .checkbox {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 99;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #f00;
+}
+
+
+.operation-section{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.operation-section .operation-section__left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.operation-section .operation-section__right {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+.operation-section .item {
+  flex: 0 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.operation-section .item-setting {
+  position: relative;
+}
+.operation-section .item-setting .operation-box {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  background-color: #fff;
+}
+
+.btn-upload {
+  width: 100px !important;
+  border-radius: 100px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #00f;
+}
+.btn {
+  height: 40px;
+}

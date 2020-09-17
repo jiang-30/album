@@ -22,46 +22,74 @@ Page({
     }
     this.fetchData()
   },
+  onPullDownRefresh(){
+    this.data.page.current = 1
+    this.data.page.more = true
+    this.fetchData()
+  },
+  onReachBottom(){
+    this.fetchData()
+  },
   fetchData(){
+    if(!this.data.page.more || this.data.page.loading) return
+    this.data.page.loading = true
+    if(this.data.page.current > 1){
+      this.setData({ 'page.status': 'more-loading'})
+    }
     getAlbumListPage({
-      page: 1,
-      size: 10,
+      current: this.data.page.current,
+      size: this.data.page.size,
+      auth: true
     }).then(res => {
       console.log('res', res)
+      let status = 'ok'
+      let current = res.page.current
+      let list = res.data
+      if(res.page.more){
+        current++
+        status = 'more'
+      } else if(res.page.total == 0) {
+        status = 'empty'
+      } else {
+        status = 'more-no'
+      }
+      if(current > 1){
+        list = this.data.list.concat(list)
+      }
       this.setData({
-        list: res.data
+        'page.current': current,
+        'page.size': res.page.size,
+        'page.more': res.page.more,
+        'page.total': res.page.total,
+        'page.status': status,
+        'list': list
       })
     }).catch(error => {
       console.warn('error', error)
+      let status = this.data.page.current == 1 ?  'error' : 'more-error'
+      this.setData({
+        'page.status': status
+      })
+    }).then(() => {
+      wx.stopPullDownRefresh()
+      this.data.page.loading = false
     })
+  },
+  onAlbumChoose(e){
+    
   },
   onItemClick(e){
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       // url: '/pages/create/create',
-      url: '/pages/album/album?id=' + id,
+      url: '/pages/album-detail/album-detail?id=' + id,
     })
   },
   onCreate(){
     wx.navigateTo({
       // url: '/pages/create/create',
-      url: '/pages/album/album',
+      url: '/pages/album-detail/album-detail',
     })
   },
-  bindtapAlbumItemTap: function (e) {
-    let index = e.currentTarget.dataset.index;
-    wx.navigateTo({
-      url: 'my-album?index=' + index,
-    })  
-  },
-  onShareAppMessage (option) {
-    let config = wx.getStorageSync('config');
-    console.log(config);
-    return {
-      title: config.sharetitle,
-      path: 'pages/home/home',
-      imageUrl: config.sharethumb
-    }
-  }
   
 })

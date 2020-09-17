@@ -4,7 +4,7 @@
     "pages/user/user",
     "pages/album-create/album-create",
     "pages/album-list/album-list",
-    "pages/album/album",
+    "pages/album-detail/album-detail",
     "pages/chooseLib/chooseLib"
   ],
   "window": {

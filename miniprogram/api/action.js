@@ -40,7 +40,11 @@ export function callFuncion(path, params, name = 'service'){
       params: params
     }
   }).then(res => {
-    return res.result
+    if(res.result.status.code == 200){
+      return res.result
+    } else {
+      return Promise.reject(res.result)
+    }
   }).catch(error => {
     console.warn(error)
   })

@@ -33,7 +33,7 @@ Page({
       this.setData({ 'page.status': 'more-loading'})
     }
     getAlbumListPage({
-      page: this.data.page.current,
+      current: this.data.page.current,
       size: this.data.page.size,
     }).then(res => {
       console.log('res', res)
@@ -65,7 +65,7 @@ Page({
       this.setData({
         'page.status': status
       })
-    }).finally(() => {
+    }).then(() => {
       wx.stopPullDownRefresh()
       this.data.page.loading = false
     })
