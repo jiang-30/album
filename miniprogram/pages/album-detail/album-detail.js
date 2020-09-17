@@ -1,11 +1,11 @@
 import { chooseImage } from '../../utils/lib/choose-image'
 import { uploadAlbumImage } from '../../api/upload/upload'
-import { createAlbum, updateAlbum, getAlbumDetail } from '../../api/album/album'
+import { createAlbum, updateAlbum, deleteAlbum, getAlbumDetail } from '../../api/album/album'
 
 Page({
   data: {
     mode: 'normal', // normal operation
-    id: "5f3dc7b45f630f350023ec3e4d6ecc8c",
+    id: "",
     info: {
       title: '',
       list: [],
@@ -13,12 +13,11 @@ Page({
     pageStatus: 'ok',
   },
   onLoad: function (options) {
-    options.id = '5f3dc7b45f630f350023ec3e4d6ecc8c'
     if(options.id){
       this.data.id = options.id
       this.fetchData()
     } else {
-      // this.fetchCreate()
+      this.fetchCreate()
     }
   },
   fetchData(){
@@ -69,6 +68,23 @@ Page({
         console.warn(err)
       })
   },
+  fetchDelete(){
+    deleteAlbum(this.data.id)
+      .then(res => {
+        console.log(res)
+        wx.showToast({
+          title: '删除成功',
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }, 1000)
+      })
+      .catch(err => {
+        console.warn(err)
+      })
+  },
   handlerStatus(){
     let status = 'ok'
     if(this.data.info.list == 0){
@@ -103,14 +119,49 @@ Page({
         })
       })
   },
+  onDeleteItem(){
+    let list = this.data.info.list.filter(item => !item.selected)
+    this.fetchUpdate({ list })
+  },
+  onDelete(){
+    wx.showModal({
+      content: '确定要删除相册吗'
+    }).then(res => {
+      console.log(res)
+      if(res.confirm){
+        this.fetchDelete()
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   onPhotoClick(e){
     console.log(e)
+    let index = e.currentTarget.dataset.index
+    if(this.data.mode == 'operation'){
+      let key = `info.list[${index}].selected`
+      this.setData({
+        [key]: !this.data.info.list[index].selected
+      })
+    }
   },
   onModeChange(){
     let mode = this.data.mode
-    mode = mode == 'normal' ? 'operation' : 'normal'
+    let list = this.data.info.list
+    if(mode == 'normal'){
+      mode = 'operation'
+      list.forEach(item => { item.selected = false })
+    } else {
+      mode = 'normal'
+    }
     this.setData({
-      mode
+      mode,
+      'info.list': list
+    })
+  },
+  onPreview(){
+    wx.navigateTo({
+      url: '/pages/album-preview/album-preview?id=' + this.data.id,
     })
   }
 })

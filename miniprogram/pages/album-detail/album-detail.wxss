@@ -40,6 +40,9 @@ page {
   height: 30rpx;
   background-color: #f00;
 }
+.img-item .checkbox.selected {
+  background-color: #00f;
+}
 
 
 .operation-section{
@@ -82,5 +85,13 @@ page {
   background-color: #00f;
 }
 .btn {
-  height: 40px;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 15px;
+  margin: 0 5px;
+  border-radius: 18px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #00f;
 }

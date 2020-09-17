@@ -6,9 +6,9 @@
 <b-status status="{{ pageStatus }}">
   <view class="row">
     <view class="col-4" wx:for="{{ info.list }}" wx:key="path">
-      <view class="img-item" bind:tap="onPhotoClick">
+      <view class="img-item" data-index="{{ index }}" bind:tap="onPhotoClick">
         <b-image src="{{ item.fileId }}" ratio="100"></b-image>
-        <view class="checkbox" wx:if="{{ mode == 'operation' }}"></view>
+        <view class="checkbox {{ item.selected ? 'selected' : '' }}" wx:if="{{ mode == 'operation' }}"></view>
       </view>
     </view>
   </view>
@@ -18,40 +18,27 @@
 <b-tab-bar>
   <view class="operation-section" wx:if="{{ mode == 'normal' }}">
     <view class="operation-section__left">
+      <view bind:tap="onPreview">
+        预览
+      </view>
       <view bind:tap="onModeChange">
         操作
       </view>
-      <!-- <view class="item">
-        <text>喜欢</text>
-      </view>
-      <view class="item">
-        <text>评论</text>
-      </view>
-      <view class="item">
-        <text>看</text>
-      </view> -->
     </view>
     <view class="operation-section__right">
       <button class="btn-upload" bind:tap="onUpload">上传</button>
     </view>
-
-    <!-- <view class="item-setting">
-      <button class="" bind:tap="onModeChange">vbb</button>
-      <view class="operation-box">
-        <view class=""></view>
-        <button>df</button>
-        <button>df</button>
-        <button>df</button>
-      </view>
-    </view> -->
-    
   </view>
   <view class="operation-section operation-section__operation" wx:if="{{ mode == 'operation' }}">
-    <view class="item" bind:tap="onModeChange">
-      <text>操作</text>
+    <view class="operation-section__left">
+      <view bind:tap="onModeChange">
+        <text>操作</text>
+      </view>
     </view>
-    <view class="btn btn-delete" bind:tap="onDelete">删除相册</view>
-    <view class="btn btn-delete-item" bind:tap="onDelete">删除</view>
-    <view class="btn btn-download" bind:tap="onDownload">下载</view>
+    <view class="operation-section__right">
+      <view class="btn btn-delete" bind:tap="onDelete">删除相册</view>
+      <view class="btn btn-delete-item" bind:tap="onDeleteItem">删除</view>
+      <view class="btn btn-download" bind:tap="onDownload">下载</view>
+    </view>
   </view>
 </b-tab-bar>

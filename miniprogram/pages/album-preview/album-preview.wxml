@@ -1,0 +1,15 @@
+<swiper 
+  class="swiper-section"
+  indicator-dots
+  vertical
+  circular
+  autoplay
+  interval="{{ 5000 }}">
+  <swiper-item class="swiper-item" wx:for="{{ info.list }}" wx:key="path">
+    <b-image src="{{ item.fileId }}" ratio="100"></b-image>
+  </swiper-item>
+</swiper>
+
+<b-back>
+<view>1</view>
+</b-back>

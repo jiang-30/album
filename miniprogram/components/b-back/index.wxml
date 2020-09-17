@@ -1,0 +1,6 @@
+
+<view class="b-back" style="top: {{ statusBarHeight }}px;">
+  <view class="b-back__body">
+    <slot></slot>
+  </view>
+</view>

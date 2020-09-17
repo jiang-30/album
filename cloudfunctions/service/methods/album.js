@@ -68,13 +68,13 @@ exports.getAlbum = async function(params, user){
 exports.createAlbum = async function(params, user, context){
   // console.log(user)
   try {
-    const time = db.serverDate()
-    let title = time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate()
+    let title = '我的相册'
     let res = await Album.add({
       data: {
         _openid: user.openId,
-        title: '',
+        title,
         list: [],
+        del: false,
         createdAt: db.serverDate(),
         updatedAt: db.serverDate()
       }

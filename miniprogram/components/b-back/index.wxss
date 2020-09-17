@@ -1,0 +1,19 @@
+.b-back {
+  position: fixed;
+  left: 10px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.b-back .b-back__body {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid #f6f6f6;
+  box-shadow: 1px 1px 10px 0 #eee;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.7);
+}
