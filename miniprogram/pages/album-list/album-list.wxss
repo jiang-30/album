@@ -1,10 +1,10 @@
 .row {
-  padding: 0 8px;
+  padding: 0 5px;
   box-sizing: border-box;
-  --row-gutter: 3px;
+  --row-gutter: 4px;
 }
 .item {
-  margin-top: 10px;
+  margin-top: 8px;
   border-radius: 5px;
   overflow: hidden;
   background-color: #fff;

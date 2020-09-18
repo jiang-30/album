@@ -2,10 +2,10 @@
   <view class="row" wx:if="{{ type == 'normal' }}">
     <view class="col-6" wx:for="{{list}}" wx:key="_id">
       <view class="item" bindtap="onItemClick" data-id="{{ item._id }}" data-index="{{index}}">
-        <b-image src="{{item.list[0].fileId}}" ratio="100"></b-image>
+        <b-image src="{{item.cover.fileId}}" ratio="100"></b-image>
         <view class="info">
           <view>{{ item.title }}</view>
-          <view class="num">{{ item.list.length }}张</view>
+          <view class="num">{{ item.num }}张</view>
         </view>
       </view>
     </view>
@@ -15,11 +15,11 @@
     <view class="col-12" wx:for="{{list}}" wx:key="_id">
       <view class="item item__choose" bindtap="onAlbumChoose" data-id="{{ item._id }}" data-index="{{index}}">
         <view class="cover">
-          <b-image src="{{item.list[0].fileId}}" ratio="100"></b-image>
+          <b-image src="{{item.cover.fileId}}" ratio="100"></b-image>
         </view>
         <view class="info">
           <view>{{ item.title }}</view>
-          <view class="num">{{ item.list.length }}张</view>
+          <view class="num">{{ item.num}}张</view>
         </view>
       </view>
     </view>

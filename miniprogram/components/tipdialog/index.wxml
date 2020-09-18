@@ -1,8 +1,0 @@
-<view class='Popup' hidden='{{iShidden}}' >
-  <view class='title'>提示</view>
-  <view class='tip'>{{tips}}</view>
-  <view class='bottom flex'>
-    <view class='item grant on' bindtap="bindtapQuery">确定</view>
-  </view>
-</view>
-<view class='mask' hidden='{{iShidden}}' catchtouchmove="true" bindtap='close'></view>

@@ -13,7 +13,9 @@ Page({
       loading: false,
       more: true
     },
-    list: []
+    heightArr: [0, 0],
+    list1: [],
+    list2: []
   },
   onLoad: function() {
     this.fetchData()
@@ -21,6 +23,7 @@ Page({
   onPullDownRefresh(){
     this.data.page.current = 1
     this.data.page.more = true
+    this.data.heightArr = [0, 0]
     this.fetchData()
   },
   onReachBottom(){
@@ -40,6 +43,19 @@ Page({
       let status = 'ok'
       let current = res.page.current
       let list = res.data
+      let list1 = []
+      let list2 = []
+      list.forEach(item => {
+        let height = item.cover.height * 360 / item.cover.width
+        item.cover.h = height
+        if(this.data.heightArr[0] > this.data.heightArr[1]){
+          list2.push(item)
+          this.data.heightArr[1] += height
+        } else {
+          list1.push(item)
+          this.data.heightArr[0] += height
+        }
+      })
       if(res.page.more){
         current++
         status = 'more'
@@ -49,7 +65,8 @@ Page({
         status = 'more-no'
       }
       if(current > 1){
-        list = this.data.list.concat(list)
+        list1 = this.data.list1.concat(list1)
+        list2 = this.data.list2.concat(list2)
       }
       this.setData({
         'page.current': current,
@@ -57,7 +74,8 @@ Page({
         'page.more': res.page.more,
         'page.total': res.page.total,
         'page.status': status,
-        'list': list
+        'list1': list1,
+        'list2': list2,
       })
     }).catch(error => {
       console.warn('error', error)

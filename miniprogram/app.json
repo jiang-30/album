@@ -6,11 +6,12 @@
     "pages/album-list/album-list",
     "pages/album-detail/album-detail",
     "pages/chooseLib/chooseLib",
-    "pages/album-preview/album-preview"
+    "pages/album-preview/album-preview",
+    "pages/about/about"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "私密相册",
     "navigationBarTextStyle": "black"

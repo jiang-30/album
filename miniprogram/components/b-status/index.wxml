@@ -9,24 +9,24 @@
 <view class="b-status">
   <slot wx:if="{{ status == 'ok' || status == 'more' || status == 'more-loading' || status == 'more-no' || status == 'more-error'  }}"></slot>
   <view wx:if="{{ status == 'placeholder' }}" class="b-status__placeholder">
-    placeholder
+    加载中...
   </view>
   <view wx:elif="{{ status == 'empty' }}" class="b-status__emtpy">
-    empty
+    暂无数据
   </view>
   <view wx:elif="{{ status == 'error' }}" class="b-status__error">
-    error
+    加载出错
   </view>
   <view wx:elif="{{ status == 'more' }}" class="b-status__more">
-    more
+    下拉加载更多
   </view>
   <view wx:elif="{{ status == 'more-loading' }}" class="b-status__more-loading">
-    more-loading
+    加载中...
   </view>
   <view wx:elif="{{ status == 'more-no' }}" class="b-status__more-no">
-    more-no
+    已显示全部
   </view>
   <view wx:elif="{{ status == 'more-error' }}" class="b-status__more-error">
-    more-error
+    加载出错
   </view>
 </view>

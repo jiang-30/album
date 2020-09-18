@@ -9,8 +9,8 @@
   align-items: center;
 }
 .b-back .b-back__body {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 16px;
   border: 1px solid #f6f6f6;
   box-shadow: 1px 1px 10px 0 #eee;

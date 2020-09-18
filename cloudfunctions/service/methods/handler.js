@@ -1,9 +1,9 @@
 const cloud = require('wx-server-sdk')
-const { env } = require('../const')
-cloud.init({ env })
-const db = cloud.database()
+const db = cloud.database({
+  throwOnNotFound: false
+})
 
-
+exports.db = db
 exports.Album = db.collection('album')
 exports.handlerResponse = function(code, data, page){
   let status = {

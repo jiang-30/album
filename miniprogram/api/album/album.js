@@ -11,6 +11,10 @@ export function getAlbumListPage(params){
   return callFuncion('/get/album/page', params)
 }
 
+export function getUserAlbumListPage(params){
+  return callFuncion('/get/user/album/page', params)
+}
+ 
 /**
  * 
  * @param {*} id 

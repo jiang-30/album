@@ -1,8 +1,6 @@
-const cloud = require('wx-server-sdk')
-const { env } = require('../const')
-cloud.init({ env })
-const db = cloud.database()
-const { Album, handlerResponse } = require('./handler')
+const { db, Album, handlerResponse } = require('./handler')
+const _ = db.command
+const $ = db.command.aggregate
 
 /**
  * 分页获取相册
@@ -13,32 +11,77 @@ exports.getAlbumListPage = async function(params = {}, user){
   try {
     const current = params.current || 1
     const size = params.size || 10
-    const filter = {} // '_openid': user.openid
-    if(params.auth){
-      filter._openid = user.openId
-    } else {
-
-    }
     let data = []
     let total = 0
     let more = false
+    const filter = {
+      del: false,
+      list: _.elemMatch({
+        fileId: _.exists(true)
+      })
+    }
 
     const countRes = await Album.where(filter).count()
     total = countRes.total
-
-    // console.log(user, cloud.getWXContext())
-    
     if(current * size < total){
       more = true
     }
     
     if(total > 0){
       const res = await Album
-      .where(filter)
+      .aggregate()
+      .match(filter)
+      .sort({
+        updatedAt: -1
+      })
       .skip((current - 1) * size)
       .limit(size)
-      .get()
-      data = res.data
+      .project({
+        cover: $.arrayElemAt(['$list',  $.subtract([$.size('$list'), 1])])
+      })
+      .end()
+      data = res.list
+    }
+    return handlerResponse(200, data, {size, current, total, more})
+  } catch (error) {
+    return handlerResponse(500, error)
+  }
+}
+
+exports.getUserAlbumListPage = async function(params, user){
+  try {
+    const current = params.current || 1
+    const size = params.size || 10
+    let data = []
+    let total = 0
+    let more = false
+    const filter = {
+      del: false,
+      _openid: user.openId
+    }
+
+    const countRes = await Album.where(filter).count()
+    total = countRes.total
+    if(current * size < total){
+      more = true
+    }
+
+    if(total > 0){
+      const res = await Album
+      .aggregate()
+      .match(filter)
+      .sort({
+        updatedAt: -1
+      })
+      .skip((current - 1) * size)
+      .limit(size)
+      .project({
+        title: 1,
+        num: $.size('$list'),
+        cover: $.arrayElemAt(['$list',  $.subtract([$.size('$list'), 1])])
+      })
+      .end()
+      data = res.list
     }
     return handlerResponse(200, data, {size, current, total, more})
   } catch (error) {

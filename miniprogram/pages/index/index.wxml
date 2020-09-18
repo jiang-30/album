@@ -1,39 +1,29 @@
-<!-- 自定义导航栏 -->
-<!-- <view class="nav-section">
-  <view class="status-bar" style="height: {{ statusBarHeight }}px;"></view>
-  <view class="nav-bar">
-    <view class="nav-left nav-aside">
-      <view class="avatar" data-path="user" bind:tap="onNav">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-    </view>
-    <view class="nav-title">title</view>
-    <view class="nav-aside"></view>
-  </view>
-</view> -->
-<view class="fixed-avatar" style="top: {{ statusBarHeight }}px;">
+<b-back>
   <view class="avatar" data-path="user" bind:tap="onNav">
     <open-data type="userAvatarUrl"></open-data>
   </view>
-</view>
+</b-back>
 
 <!-- 相册列表 -->
 <b-status status="{{ page.status }}">
-  <view>
-    <view class="row">
-      <view class="col-6" wx:for="{{ list }}" wx:key="_id">
-        <view class="item" data-id="{{ item._id }}" data-path="albumDetail" bind:tap="onNav">
-          <view class="cover">
-            <b-image src="{{ item.list[0].fileId }}" ratio="120"></b-image>
-          </view>
-          <!-- <view class="info text-ellipsis">
-            {{ item.title}}
-          </view> -->
+  <view class="box">
+    <view class="list1-box">
+      <block wx:for="{{ list1 }}" wx:key="_id">
+        <view class="item" style="height: {{ item.cover.h }}rpx">
+          <b-image src="{{item.cover.fileId}}"></b-image>
         </view>
-      </view>
+      </block>
+    </view>
+    <view class="list2-box">
+      <block wx:for="{{ list2 }}" wx:key="_id">
+        <view class="item" style="height: {{ item.cover.h }}rpx">
+          <b-image src="{{item.cover.fileId}}"></b-image>
+        </view>
+      </block>
     </view>
   </view>
 </b-status>
+
 
 
 <!-- <view class="add-section" bind:tap="onAdd">

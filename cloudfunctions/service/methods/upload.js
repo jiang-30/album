@@ -1,6 +1,4 @@
 const cloud = require('wx-server-sdk')
-const { env } = require('../const')
-cloud.init({ env })
 const { v4: uuidv4 } = require('uuid')
 const md5 = require('md5')
 const { Album, handlerResponse } = require('./handler')

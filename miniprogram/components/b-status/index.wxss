@@ -1,29 +1,54 @@
-.b-status .b-status__placeholder {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  line-height: 20px;
+.b-status {
   text-align: center;
   font-size: 14px;
   font-weight: 400;
-  color: #777777;
+  color: #888;
+}
+.b-status .b-status__placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vw;
 }
 .b-status .b-status__empty {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vw;
 }
 .b-status .b-status__error {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vw;
 }
 .b-status .b-status__more {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  line-height: 50px;
 }
 .b-status .b-status__more-loading {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  line-height: 50px;
 }
 .b-status .b-status__more-no {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  line-height: 50px;
 }
-.b-status .b-status__error {
-
+.b-status .b-status__more-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  line-height: 50px;
 }
 
 

@@ -1,5 +1,5 @@
-import { Home } from '../../utils/model/home-model.js';
-var home = new Home();
+// import { Home } from '../../utils/model/home-model.js';
+// var home = new Home();
 const app = getApp()
 Page({
   data: {

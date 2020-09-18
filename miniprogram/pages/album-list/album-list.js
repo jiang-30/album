@@ -1,4 +1,4 @@
-import { getAlbumListPage } from '../../api/album/album'
+import { getUserAlbumListPage } from '../../api/album/album'
 
 Page({
   data: {
@@ -36,7 +36,7 @@ Page({
     if(this.data.page.current > 1){
       this.setData({ 'page.status': 'more-loading'})
     }
-    getAlbumListPage({
+    getUserAlbumListPage({
       current: this.data.page.current,
       size: this.data.page.size,
       auth: true

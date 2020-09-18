@@ -33,6 +33,7 @@ export  function download(id){
  * @param { string } name 云函数名称
  */
 export function callFuncion(path, params, name = 'service'){
+  wx.showNavigationBarLoading()
   return wx.cloud.callFunction({
     name: name,
     data: {
@@ -40,12 +41,15 @@ export function callFuncion(path, params, name = 'service'){
       params: params
     }
   }).then(res => {
+    wx.hideNavigationBarLoading()
     if(res.result.status.code == 200){
       return res.result
     } else {
       return Promise.reject(res.result)
     }
   }).catch(error => {
+    wx.hideNavigationBarLoading()
     console.warn(error)
+    return Promise.reject(error)
   })
 }

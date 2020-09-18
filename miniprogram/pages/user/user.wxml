@@ -1,61 +1,37 @@
 
-<view class="container">
   <view class="header">
-    <block wx:if='{{userInfo}}'>
-      <image src="{{userInfo.avatarUrl}}"></image>
-      <text class="name">{{userInfo.nickName}}</text>
-    </block>
-    <block wx:else>
-      <image src="../../images/user@default.png"></image>
-      <text class="name">安心云相册</text>
-    </block>
+    <open-data type="userAvatarUrl" class="avatar"></open-data>
+    <open-data type="userNickName"></open-data>
   </view>
   <view class="lst">
-    <view class='item' bindtap="bindtapVip">
-      <view class="left"><image src="../../images/my@vip.png" mode="" /><text>我的VIP</text></view>
-      <view class="right"><image src="../../images/right.png" mode="" /></view>
-    </view>
-    <view class='item' bindtap="bindtapShang">
-      <view class="left"><image src="../../images/my@shang.png" mode="" /><text>打赏一下</text></view>
-      <view class="right"><image src="../../images/right.png" mode="" /></view>
-    </view>
-      <view class='item' bindtap="bindtapSetting">
-      <view class="left"><image src="../../images/my@setting.png" mode="" /><text>护眼设置</text></view>
-      <view class="right"><image src="../../images/right.png" mode="" /></view>
-    </view>
-  </view>
-
-  <view class="lst">
-    <view class='item' bindtap="bindtapXiangce">
+    <view class='item' bindtap="onNavAlbum">
       <view class="left"><image src="../../images/my@xiangce.png" mode="" /><text>我的相册</text></view>
       <view class="right"><image src="../../images/right.png" mode="" /></view>
     </view>
-    <view class='item' bindtap="bindtapShouce">
-      <view class="left"><image src="../../images/my@shouce.png" mode="" /><text>使用手册</text></view>
+    <view class='item'>
+      <view class="left"><image src="../../images/my@feedback.png" mode="" /><text>授权设置</text></view>
       <view class="right"><image src="../../images/right.png" mode="" /></view>
+      <button class="btn"  open-type="openSetting"></button>
     </view>
-    <view class='item' bindtap="bindtapFeedback">
+    <view class='item'>
       <view class="left"><image src="../../images/my@feedback.png" mode="" /><text>意见反馈</text></view>
       <view class="right"><image src="../../images/right.png" mode="" /></view>
+      <button class="btn"  open-type="feecback"></button>
     </view>
-    <view class='item' bindtap="bindtapLianxi">
+    <view class='item'>
       <view class="left"><image src="../../images/my@lianxi.png" mode="" /><text>联系我们</text></view>
       <view class="right"><image src="../../images/right.png" mode="" /></view>
+      <button class="btn" open-type="contact"></button>
     </view>
-    <!--
-      <button open-type="contact" bindcontact="handleContact">
-      <text>咨询客服</text><image src="../../images/right.png" mode="" />
-    </button>
-    -->
   </view>
 
   <view class="lst">
-    <view class='item' bindtap="bindtapAbout">
-      <view class="left"><image src="../../images/my@about.png" mode="" /><text>关于密码相册</text></view>
+    <view class='item' bindtap="onReward">
+      <view class="left"><image src="../../images/my@shang.png" mode="" /><text>打赏一下</text></view>
+      <view class="right"><image src="../../images/right.png" mode="" /></view>
+    </view>
+    <view class='item' bindtap="onNavAbout">
+      <view class="left"><image src="../../images/my@about.png" mode="" /><text>关于相册</text></view>
       <view class="right"><image src="../../images/right.png" mode="" /></view>
     </view>
   </view>
-  <image src='/images/support.png' class='support'></image>
-  <!-- 授权提醒 iShidden -->
-  <!-- <authorize bind:onLoadFun='onLoadFun' iShidden="{{iShidden}}"></authorize> -->
-</view>
